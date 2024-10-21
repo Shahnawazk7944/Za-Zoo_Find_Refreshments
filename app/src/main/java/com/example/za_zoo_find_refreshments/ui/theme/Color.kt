@@ -2,10 +2,10 @@ package com.example.za_zoo_find_refreshments.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-//internal val primaryLight = Color(0xFF3D5D52)
-//internal val onPrimaryLight = Color(0xFFFE5D00)
-internal val primaryLight = Color(0xFF023e8a)
-internal val onPrimaryLight = Color(0xFFcae9ff)
+internal val primaryLight = Color(0xFF3D5D52)
+internal val onPrimaryLight = Color(0xFFFE5D00)
+//internal val primaryLight = Color(0xFF023e8a)
+//internal val onPrimaryLight = Color(0xFFcae9ff)
 internal val secondaryLight = Color(0xFF590d22)
 internal val onSecondaryLight = Color(0xFFfdfcdc)
 internal val tertiaryLight = Color(0xFF415d43)
