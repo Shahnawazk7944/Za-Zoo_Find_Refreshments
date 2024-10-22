@@ -25,9 +25,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.za_zoo_find_refreshments.R
+import com.example.za_zoo_find_refreshments.presentation.viewmodels.events.ProductsState
 
 @Composable
-fun NavigationBar(modifier: Modifier = Modifier) {
+fun NavigationBar(modifier: Modifier = Modifier, state: ProductsState) {
     Box(
         modifier = Modifier
             .padding(top = 15.dp)
@@ -56,7 +57,7 @@ fun NavigationBar(modifier: Modifier = Modifier) {
                 )
                 {
                     Text(
-                        text = "18",
+                        text = state.addToCart.size.toString(),
                         fontSize = 28.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = Color.White
@@ -83,17 +84,9 @@ fun NavigationBar(modifier: Modifier = Modifier) {
                     )
                 }
             }
-
-            CircularImageTiles(
-                imageList = listOf(
-                    "https://s3-media0.fl.yelpcdn.com/bphoto/CshEeBdbMraPh2GBj-0mZg/ls.jpg",
-                    "https://s3-media0.fl.yelpcdn.com/bphoto/CshEeBdbMraPh2GBj-0mZg/ls.jpg",
-                    "https://s3-media0.fl.yelpcdn.com/bphoto/CshEeBdbMraPh2GBj-0mZg/ls.jpg",
-                    "https://s3-media0.fl.yelpcdn.com/bphoto/CshEeBdbMraPh2GBj-0mZg/ls.jpg",
-                    "https://s3-media0.fl.yelpcdn.com/bphoto/CshEeBdbMraPh2GBj-0mZg/ls.jpg"
-                )
-            )
+            if (state.cartItemImages.isNotEmpty()) {
+                CircularImageTiles(imageList = state.cartItemImages)
+            }
         }
-
     }
 }

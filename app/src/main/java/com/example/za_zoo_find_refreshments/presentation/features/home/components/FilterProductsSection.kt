@@ -8,12 +8,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -21,13 +20,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.za_zoo_find_refreshments.presentation.viewmodels.events.ProductsState
 
 @Composable
-fun FilterProductSection(onProductClick: (String) -> Unit) {
-
-    val items = listOf("Pizza", "Juice", "Coffee")
-    var selectedIndex = remember { mutableIntStateOf(0) }
-
+fun FilterProductSection(onProductChange: (String) -> Unit, state: ProductsState) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -35,15 +31,14 @@ fun FilterProductSection(onProductClick: (String) -> Unit) {
             .padding(horizontal = 20.dp)
             .fillMaxWidth()
     ) {
-        items(items.size) { index ->
+        items(state.productCategories) { product ->
             Box(
                 modifier = Modifier
                     .size(120.dp, 50.dp)
                     .clip(RoundedCornerShape(60.dp))
                     .background(MaterialTheme.colorScheme.onPrimary)
                     .clickable {
-                        selectedIndex.intValue = index
-                        onProductClick.invoke(items[index])
+                        onProductChange.invoke(product)
                     }
             ) {
                 Box(
@@ -51,7 +46,7 @@ fun FilterProductSection(onProductClick: (String) -> Unit) {
                         .size(100.dp, 35.dp)
                         .clip(RoundedCornerShape(60.dp))
                         .background(
-                            color = if (selectedIndex.intValue == index) {
+                            color = if (state.selectedProduct == product) {
                                 MaterialTheme.colorScheme.primary
                             } else {
                                 MaterialTheme.colorScheme.onPrimary
@@ -60,7 +55,7 @@ fun FilterProductSection(onProductClick: (String) -> Unit) {
                         .align(Alignment.Center)
                 ) {
                     Text(
-                        text = items[index],
+                        text = product,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFFDCF6FF),

@@ -39,6 +39,8 @@ import androidx.compose.ui.util.lerp
 import androidx.compose.ui.zIndex
 import coil.compose.SubcomposeAsyncImage
 import com.example.za_zoo_find_refreshments.R
+import com.example.za_zoo_find_refreshments.domain.model.DetailResult
+import com.example.za_zoo_find_refreshments.presentation.viewmodels.events.ProductsState
 import kotlin.math.absoluteValue
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -46,7 +48,9 @@ import kotlin.math.absoluteValue
 fun RefreshmentsPager(
     pagerState: PagerState,
     modifier: Modifier = Modifier,
-    addToCart: () -> Unit
+    state: ProductsState,
+    addToCart: (DetailResult) -> Unit,
+    addImageToCart: (String) -> Unit,
 ) {
     HorizontalPager(
         state = pagerState,
@@ -110,14 +114,14 @@ fun RefreshmentsPager(
                     SubcomposeAsyncImage(
                         alignment = Alignment.Center,
                         modifier = Modifier.fillMaxSize(),
-                        model = "https://s3-media0.fl.yelpcdn.com/bphoto/CshEeBdbMraPh2GBj-0mZg/ls.jpg",
+                        model = state.products[page].scrollablePhotos.first().src,
                         contentDescription = "refreshments images",
                         contentScale = ContentScale.Crop,
                         loading = {
                             CircularProgressIndicator(
                                 strokeWidth = 4.dp,
                                 modifier = Modifier
-                                    .size(100.dp)
+                                    .size(60.dp)
                                     .padding(10.dp),
                                 color = MaterialTheme.colorScheme.primary
                             )
@@ -125,14 +129,20 @@ fun RefreshmentsPager(
                     )
                 }
                 Text(
-                    "The Potted Head",
+                    state.products[page].name,
                     fontSize = 21.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onPrimary
                 )
-                ReviewsAndRatingsRow(reviews = 100, ratings = 4.5f)
+                ReviewsAndRatingsRow(
+                    reviews = state.products[page].reviewCount,
+                    ratings = state.products[page].rating.toFloat()
+                )
                 Button(
-                    onClick = { addToCart.invoke() },
+                    onClick = {
+                        addToCart.invoke(state.products[page])
+                        addImageToCart.invoke(state.products[page].scrollablePhotos.first().src)
+                    },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.Black),
                     modifier = Modifier
                         .fillMaxWidth()
@@ -147,7 +157,7 @@ fun RefreshmentsPager(
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.bag),
-                            contentDescription = ""
+                            contentDescription = "Cart Image"
                         )
                         Spacer(modifier = Modifier.size(10.dp))
                         Text(
@@ -158,7 +168,7 @@ fun RefreshmentsPager(
                         )
                         Spacer(modifier = Modifier.size(35.dp))
                         Text(
-                            text =  "$$randomDollarAmount.00",
+                            text = "$$randomDollarAmount.00",
                             fontSize = 17.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = Color.White

@@ -20,11 +20,11 @@ import androidx.compose.ui.zIndex
 import coil.compose.SubcomposeAsyncImage
 
 @Composable
-fun CircularImageTiles(imageList: List<String>) {
+fun CircularImageTiles(imageList: List<String> ) {
     Box(
         modifier = Modifier.padding(horizontal = 10.dp)
     ) {
-        imageList.takeLast(4).forEachIndexed { index, imageId ->
+        imageList.takeLast(4).reversed().forEachIndexed { index, imageId ->
             Box(
                 modifier = Modifier.scale(1.3f).padding(start = (20 * index).dp, )
                     .clip(CircleShape)

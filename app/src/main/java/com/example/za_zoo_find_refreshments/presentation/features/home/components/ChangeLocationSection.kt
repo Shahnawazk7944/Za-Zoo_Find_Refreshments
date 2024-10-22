@@ -24,16 +24,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.za_zoo_find_refreshments.R
+import com.example.za_zoo_find_refreshments.presentation.viewmodels.events.ProductsState
 
 @Composable
-fun ChangeLocationSection(openChangeLocationDialog: (isOpen: Boolean) -> Unit){
+fun ChangeLocationSection(openChangeLocationDialog: (isOpen: Boolean) -> Unit, state: ProductsState){
     Row(
         modifier = Modifier.fillMaxWidth().padding(top = 5.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Location",
+            text = state.selectedLocation,
             fontSize = 20.sp,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colorScheme.secondary
