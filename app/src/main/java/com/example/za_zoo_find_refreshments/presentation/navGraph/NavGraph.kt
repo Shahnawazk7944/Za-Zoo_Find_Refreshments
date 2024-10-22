@@ -5,7 +5,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.za_zoo_find_refreshments.presentation.features.HomeScreen
+import com.example.za_zoo_find_refreshments.presentation.features.home.HomeScreen
 import com.example.za_zoo_find_refreshments.presentation.viewmodels.HomeViewModel
 
 

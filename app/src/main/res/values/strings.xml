@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Za-Zoo_Find_Refreshments</string>
+    <string name="app_name">Za-Zoo</string>
+    <string name="headline">The ultimate refreshment companion"</string>
+    <string name="product_section_heading">Refreshments Near You</string>">
 </resources>
