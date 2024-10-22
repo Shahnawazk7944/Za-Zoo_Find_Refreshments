@@ -1,6 +1,10 @@
 package com.example.za_zoo_find_refreshments.presentation.viewmodels.events
 
-sealed class Result<out T> {
-    data class Success<out T>(val data: T) : Result<T>()
-    data class Failure(val exception: Exception) : Result<Nothing>()
+import com.example.za_zoo_find_refreshments.domain.model.DetailResult
+
+sealed class HomeEvent {
+    data class FilterProducts(val query: String): HomeEvent()
+    data class AddProductImageToCart(val imageUrl: String): HomeEvent()
+    data class ChangeLocation(val location: String): HomeEvent()
+    data class AddToCart(val cartItem: DetailResult): HomeEvent()
 }

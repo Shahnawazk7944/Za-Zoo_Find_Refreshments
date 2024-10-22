@@ -2,11 +2,11 @@ package com.example.za_zoo_find_refreshments.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-internal val primaryLight = Color(0xFF3D5D52)
-internal val onPrimaryLight = Color(0xFFFE5D00)
 //internal val primaryLight = Color(0xFF023e8a)
 //internal val onPrimaryLight = Color(0xFFcae9ff)
-internal val secondaryLight = Color(0xFF590d22)
+internal val primaryLight = Color(0xFF3D5D52)
+internal val onPrimaryLight = Color(0xFFFE5D00)
+internal val secondaryLight = Color(0xFF1A243B)
 internal val onSecondaryLight = Color(0xFFfdfcdc)
 internal val tertiaryLight = Color(0xFF415d43)
 internal val onTertiaryLight = Color(0xFFa1cca5)
@@ -21,8 +21,8 @@ internal val backgroundLight = Color(0xFFDCF6FF)
 
 
 //Dark theme colors
-internal val primaryDark = Color(0xFFcae9ff)
-internal val onPrimaryDark = Color(0xFF023e8a)
+internal val primaryDark = Color(0xFFFE5D00)
+internal val onPrimaryDark = Color(0xFF3D5D52)
 internal val secondaryDark = Color(0xFFfdfcdc)
 internal val onSecondaryDark = Color(0xFF262A30)
 internal val tertiaryDark = Color(0xFFa1cca5)
